@@ -1,0 +1,21 @@
+<h1>{{.PageTitle}}<h1>
+
+<form action="/register" method="post">
+    Name:<input type="text" name="name">
+    Usage:<input type="text" name="usage">
+    <input type="submit" value="Add">
+</form>
+
+Sum per name
+<ul>
+    {{ range $key, $value := .SummedWashings }}
+   <li><strong>{{ $key }}</strong>: {{ $value }}</li>
+{{ end }}
+</ul>
+
+Registered data
+<ul>
+    {{range $index, $washing := .Washings}}
+            <li>{{$washing.Date.Format "2006-01-02"}} {{$washing.Name}}: {{$washing.Usage}} <a href="/delete?id={{$index}}">Remove</a></li>
+    {{end}}
+</ul>
